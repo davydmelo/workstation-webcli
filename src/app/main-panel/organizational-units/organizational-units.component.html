@@ -1,0 +1,20 @@
+<button [routerLink]="['/organizational_unit', {action: 'create'}]">New Organizational Unit</button>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Nome</td>
+            <td>Ações</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let o of ous">
+            <td>{{o.id}}</td>
+            <td>{{o.name}}</td>
+            <td><button [routerLink]="['/organizational_unit', {action: 'view'}]">Visualizar</button></td>
+            <td><button [routerLink]="['/organizational_unit', {action: 'edit'}]">Editar</button></td>
+            <td><button [routerLink]="['/organizational_unit', {action: 'delete', id: 1}]">Excluir</button></td>
+        </tr>
+    </tbody>
+</table>
