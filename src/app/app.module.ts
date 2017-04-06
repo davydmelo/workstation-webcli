@@ -18,7 +18,10 @@ import { OrganizationalUnitService } from './organizational-unit.service';
 const routes: Routes = [
   { path: '', component: MenuComponent },
   { path: 'organizational_units', component: OrganizationalUnitsComponent },
-  { path: 'organizational_unit', component: OrganizationalUnitComponent },
+  { path: 'organizational_unit/create', component: OrganizationalUnitComponent },
+  { path: 'organizational_unit/:id/view', component: OrganizationalUnitComponent },
+  { path: 'organizational_unit/:id/edit', component: OrganizationalUnitComponent },
+  { path: 'organizational_unit/:id/delete', component: OrganizationalUnitComponent },
 //  { path: 'materials', component: OrganizationalUnitsComponent },
 //  { path: 'materials/:id', component: OrganizationalUnitsComponent },
 //  { path: 'vendors', component: VendorsComponent },

@@ -8,14 +8,39 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class OrganizationalUnitComponent implements OnInit {
 
+  public action: string;
+
   constructor(private route: ActivatedRoute)
-  {
-      
+  {      
   }
 
   ngOnInit()
   {
-      console.log(this.route.snapshot.params['action']);
+      this.action = this.route.snapshot.url[this.route.snapshot.url.length - 1].path;
   }
 
+  isFormDisabled(): boolean
+  {
+    return this.action === 'view' || this.action === 'delete';
+  }
+
+  onSelectedToTheRight()
+  {
+    console.log('Right');
+  }
+
+  onSelectedToTheLeft()
+  {
+    console.log('Left');
+  }
+
+  onSubmit()
+  {
+    console.log('Submit');
+  }
+
+  onDelete()
+  {
+
+  }
 }

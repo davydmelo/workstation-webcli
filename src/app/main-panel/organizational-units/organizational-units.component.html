@@ -1,6 +1,6 @@
-<button [routerLink]="['/organizational_unit', {action: 'create'}]">New Organizational Unit</button>
+<button [routerLink]="['/organizational_unit', 'create']" class="btn btn-primary">New Organizational Unit</button>
 
-<table>
+<table *ngIf="ous.length > 0; else zeroElementMessage" class="table table-striped">
     <thead>
         <tr>
             <td>Id</td>
@@ -12,9 +12,11 @@
         <tr *ngFor="let o of ous">
             <td>{{o.id}}</td>
             <td>{{o.name}}</td>
-            <td><button [routerLink]="['/organizational_unit', {action: 'view'}]">Visualizar</button></td>
-            <td><button [routerLink]="['/organizational_unit', {action: 'edit'}]">Editar</button></td>
-            <td><button [routerLink]="['/organizational_unit', {action: 'delete', id: 1}]">Excluir</button></td>
+            <td><button [routerLink]="['/organizational_unit', o.id, 'view']" class="btn btn-default">Visualizar</button></td>
+            <td><button [routerLink]="['/organizational_unit', o.id, 'edit']" class="btn btn-success">Editar</button></td>
+            <td><button [routerLink]="['/organizational_unit', o.id, 'delete']" class="btn btn-danger">Excluir</button></td>
         </tr>
     </tbody>
 </table>
+
+<ng-template #zeroElementMessage>Não existem unidades organizacionais cadastradas</ng-template>
