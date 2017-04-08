@@ -1,0 +1,24 @@
+<button [routerLink]="['/vendor', 'create']" class="btn btn-primary btn-sm">New Vendor</button>
+
+<table *ngIf="vendors.length > 0; else zeroElementMessage" class="table table-striped">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>NOME</td>
+            <td>AÇÕES</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let vendor of vendors">
+            <td>{{vendor.id}}</td>
+            <td>{{vendor.name}}</td>
+            <td>
+                <button [routerLink]="['/vendor', vendor.id, 'view']" class="btn btn-default btn-sm">Visualizar</button>
+                <button [routerLink]="['/vendor', vendor.id, 'edit']" class="btn btn-success btn-sm">Editar</button>
+                <button [routerLink]="['/vendor', vendor.id, 'delete']" class="btn btn-danger btn-sm">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #zeroElementMessage>Não existem fornecedores cadastrados</ng-template>

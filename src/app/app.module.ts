@@ -9,19 +9,29 @@ import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
 import { MainPanelComponent } from './main-panel/main-panel.component';
 import { MaterialListComponent } from './main-panel/material-list/material-list.component';
+
 import { OrganizationalUnitsComponent } from './main-panel/organizational-units/organizational-units.component';
 import { OrganizationalUnitComponent } from './main-panel/organizational-unit/organizational-unit.component';
-
 import { OrganizationalUnitService } from './organizational-unit.service';
+
+import { VendorsComponent } from './main-panel/vendors/vendors.component';
+import { VendorService } from './vendor.service';
+import { VendorComponent } from './main-panel/vendor/vendor.component';
 
 
 const routes: Routes = [
-  { path: '', component: MenuComponent },
+  { path: '', component: MainPanelComponent },
   { path: 'organizational_units', component: OrganizationalUnitsComponent },
   { path: 'organizational_unit/create', component: OrganizationalUnitComponent },
   { path: 'organizational_unit/:id/view', component: OrganizationalUnitComponent },
   { path: 'organizational_unit/:id/edit', component: OrganizationalUnitComponent },
   { path: 'organizational_unit/:id/delete', component: OrganizationalUnitComponent },
+
+  { path: 'vendors', component: VendorsComponent },
+  { path: 'vendor/create', component: VendorComponent },
+  { path: 'vendor/:id/view', component: VendorComponent },
+  { path: 'vendor/:id/edit', component: VendorComponent },
+  { path: 'vendor/:id/delete', component: VendorComponent },
 //  { path: 'materials', component: OrganizationalUnitsComponent },
 //  { path: 'materials/:id', component: OrganizationalUnitsComponent },
 //  { path: 'vendors', component: VendorsComponent },
@@ -37,7 +47,9 @@ const routes: Routes = [
     MainPanelComponent,
     MaterialListComponent,
     OrganizationalUnitsComponent,
-    OrganizationalUnitComponent
+    OrganizationalUnitComponent,
+    VendorsComponent,
+    VendorComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +57,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [OrganizationalUnitService],
+  providers: [OrganizationalUnitService, VendorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

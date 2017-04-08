@@ -1,26 +1,26 @@
-<form class="form-horizontal">
-    <div class="form-group">
+<form>
+    <div class="form-group row">
         <label for="id" class="control-label col-sm-2">Código:</label>
         <div class="col-sm-4">
-            <input name="id" id="id" class="form-control" [disabled]="isFormDisabled()"/>
+            <input name="id" id="id" class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group row">
         <label for="name" class="control-label col-sm-2">Nome:</label>
         <div class="col-sm-4">
-            <input name="name" id="name" class="form-control" [disabled]="isFormDisabled()"/>
+            <input name="name" id="name" class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
         </div>
     </div>
 
-    <div class="form-group"> 
+    <div class="form-group row"> 
         <label for="sponsors" class="control-label col-sm-2">Responsáveis:</label>
         <div class="col-sm-2">
-            <input class="form-control" [disabled]="isFormDisabled()"/>
-            <button (click)="onSelectedToTheRight()" class="btn btn-primary form-control" [disabled]="isFormDisabled()">
-                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            <input class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
+            <button (click)="onSelectedToTheRight()" class="btn btn-primary form-control btn-sm" [disabled]="isFormDisabled()">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </button>
-            <select multiple class="form-control" id="sponsors" [disabled]="isFormDisabled()">
+            <select multiple class="form-control form-control-sm" id="sponsors" [disabled]="isFormDisabled()">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="opel">Opel</option>
@@ -28,21 +28,21 @@
             </select>
         </div>
         <div class="col-sm-2">
-            <input class="form-control" [disabled]="isFormDisabled()"/>
-            <button (click)="onSelectedToTheLeft()" class="btn btn-primary form-control" [disabled]="isFormDisabled()">
-                <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            <input class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
+            <button (click)="onSelectedToTheLeft()" class="btn btn-primary form-control  btn-sm" [disabled]="isFormDisabled()">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </button>      
-            <select multiple class="form-control" [disabled]="isFormDisabled()">                
+            <select multiple class="form-control form-control-sm" [disabled]="isFormDisabled()">                
             </select>
         </div>
     </div>
 
-    <div class="form-group"> 
+    <div class="form-group row"> 
         <div class="col-sm-offset-2 col-sm-10">
-            <button (click)="onDelete()" *ngIf="action === 'delete'" class="btn btn-primary">Delete</button>
-            <button (click)="onSubmit()" *ngIf="action === 'create' || action === 'edit'" class="btn btn-primary">Save</button>
-            <button routerLink="/organizational_units" *ngIf="action !== 'view'" class="btn btn-default">Cancelar</button>
-            <button routerLink="/organizational_units" *ngIf="action === 'view'" class="btn btn-default">Voltar</button>
+            <button (click)="onDelete()" *ngIf="action === 'delete'" class="btn btn-primary btn-sm">Delete</button>
+            <button (click)="onSubmit()" *ngIf="action === 'create' || action === 'edit'" class="btn btn-primary btn-sm">Save</button>
+            <button routerLink="/organizational_units" *ngIf="action !== 'view'" class="btn btn-default btn-sm">Cancelar</button>
+            <button routerLink="/organizational_units" *ngIf="action === 'view'" class="btn btn-default btn-sm">Voltar</button>
         </div>
     </div>
 </form>

@@ -12,8 +12,7 @@ export class OrganizationalUnitsComponent implements OnInit {
 
   ous: OrganizationalUnit[] = [];
 
-  constructor(private ouService: OrganizationalUnitService,
-             private router: Router)
+  constructor(private ouService: OrganizationalUnitService)
   {
   }
 
@@ -21,10 +20,4 @@ export class OrganizationalUnitsComponent implements OnInit {
   {
       this.ous = this.ouService.getAll();
   }
-
-  onNewOrganizationalUnit()
-  {
-    this.router.navigate(['/organizational_unit', {action: 'create'}]);
-  }
-
 }

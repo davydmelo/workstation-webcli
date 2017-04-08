@@ -1,22 +1,56 @@
-<button [routerLink]="['/organizational_unit', 'create']" class="btn btn-primary">New Organizational Unit</button>
+<div class="card">
+  <div class="card-header">
 
-<table *ngIf="ous.length > 0; else zeroElementMessage" class="table table-striped">
+      <div class="clearfix">
+        LISTA DE UNIDADES ORGANIZACIONAIS      
+        <button [routerLink]="['/organizational_unit', 'create']" class="btn btn-secondary btn-sm float-right">New Organizational Unit</button>
+    </div>
+    
+  </div>
+
+  <div class="card-block">
+    
+
+<table *ngIf="ous.length > 0; else zeroElementMessage" class="table table-striped table-bordered table-sm">
     <thead>
         <tr>
-            <td>Id</td>
-            <td>Nome</td>
-            <td>Ações</td>
+            <td class="col-2 text-center">ID
+                <br/><input class="form-control form-control-sm"/>
+            </td>
+            <td class="col-4 text-center">
+                NOME
+                <br/><input class="form-control form-control-sm"/>
+            </td>
+            <td class="text-center">AÇÕES</td>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let o of ous">
             <td>{{o.id}}</td>
             <td>{{o.name}}</td>
-            <td><button [routerLink]="['/organizational_unit', o.id, 'view']" class="btn btn-default">Visualizar</button></td>
-            <td><button [routerLink]="['/organizational_unit', o.id, 'edit']" class="btn btn-success">Editar</button></td>
-            <td><button [routerLink]="['/organizational_unit', o.id, 'delete']" class="btn btn-danger">Excluir</button></td>
+            <td class="text-center">
+                <button [routerLink]="['/organizational_unit', o.id, 'view']" class="btn btn-secondary btn-sm">Visualizar</button>
+                <button [routerLink]="['/organizational_unit', o.id, 'edit']" class="btn btn-success btn-sm">Editar</button>
+                <button [routerLink]="['/organizational_unit', o.id, 'delete']" class="btn btn-danger btn-sm">Excluir</button>
+            </td>
         </tr>
     </tbody>
 </table>
 
 <ng-template #zeroElementMessage>Não existem unidades organizacionais cadastradas</ng-template>
+  </div>
+
+  <div class="card-footer">
+    <nav>
+        <ul class="pagination pagination-sm justify-content-center">
+            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+  </div>
+</div>
+
+

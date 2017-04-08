@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OrganizationalUnit} from './organizational-unit';
+import { OrganizationalUnit } from './organizational-unit';
 
 @Injectable()
 export class OrganizationalUnitService {
