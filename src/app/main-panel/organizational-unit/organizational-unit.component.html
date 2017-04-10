@@ -1,5 +1,5 @@
 <form>
-    <div class="form-group row">
+    <div class="form-group row" *ngIf="action !== 'create'">
         <label for="id" class="control-label col-sm-2">Código:</label>
         <div class="col-sm-4">
             <input name="id" id="id" class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
