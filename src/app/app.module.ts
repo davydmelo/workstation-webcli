@@ -17,6 +17,9 @@ import { OrganizationalUnitService } from './organizational-unit.service';
 import { VendorsComponent } from './main-panel/vendors/vendors.component';
 import { VendorService } from './vendor.service';
 import { VendorComponent } from './main-panel/vendor/vendor.component';
+import { UserComponent } from './user/user.component';
+import { UsersComponent } from './users/users.component';
+import { UserService } from "app/user.service";
 
 
 const routes: Routes = [
@@ -49,7 +52,9 @@ const routes: Routes = [
     OrganizationalUnitsComponent,
     OrganizationalUnitComponent,
     VendorsComponent,
-    VendorComponent
+    VendorComponent,
+    UserComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [OrganizationalUnitService, VendorService],
+  providers: [OrganizationalUnitService, VendorService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

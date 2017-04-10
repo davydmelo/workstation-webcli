@@ -1,15 +1,16 @@
-<form>
+<form #f="ngForm">
     <div class="form-group row" *ngIf="action !== 'create'">
         <label for="id" class="control-label col-sm-2">Código:</label>
         <div class="col-sm-4">
-            <input name="id" id="id" class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
+            <input name="id" id="id" class="form-control form-control-sm" [disabled]="isFormDisabled()" ngModel/>
         </div>
     </div>
 
     <div class="form-group row">
         <label for="name" class="control-label col-sm-2">Nome:</label>
         <div class="col-sm-4">
-            <input name="name" id="name" class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
+            <input name="name" id="name" class="form-control form-control-sm" [disabled]="isFormDisabled()" ngModel required #name="ngModel"/>
+            <small *ngIf="!name.valid && name.touched" class="form-text text-muted">Por gentileza, entre com um nome válido</small>
         </div>
     </div>
 
@@ -20,27 +21,29 @@
             <button (click)="onSelectedToTheRight()" class="btn btn-primary form-control btn-sm" [disabled]="isFormDisabled()">
                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </button>
-            <select multiple class="form-control form-control-sm" id="sponsors" [disabled]="isFormDisabled()">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+            <select multiple class="form-control form-control-sm" id="sponsors" [disabled]="isFormDisabled()" name="leftSelect" ngModel #s1>
+                <option *ngFor="let user of users; let i = index;" [ngValue]='i'>{{user.username}}</option>                
             </select>
+
+            <pre>{{users | json }}</pre>
         </div>
         <div class="col-sm-2">
             <input class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
-            <button (click)="onSelectedToTheLeft()" class="btn btn-primary form-control  btn-sm" [disabled]="isFormDisabled()">
+            <button (click)="onSelectedToTheLeft()" class="btn btn-primary form-control btn-sm" [disabled]="isFormDisabled()">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </button>      
-            <select multiple class="form-control form-control-sm" [disabled]="isFormDisabled()">                
+            <select multiple class="form-control form-control-sm" [disabled]="isFormDisabled()" name="rightSelect" ngModel>
+                <option *ngFor="let u of selectedUsers" [ngValue]='u.id'>{{u.username}}</option>
             </select>
+
+            <pre>{{selectedUsers | json }}</pre>
         </div>
     </div>
 
     <div class="form-group row"> 
         <div class="col-sm-offset-2 col-sm-10">
-            <button (click)="onDelete()" *ngIf="action === 'delete'" class="btn btn-primary btn-sm">Delete</button>
-            <button (click)="onSubmit()" *ngIf="action === 'create' || action === 'edit'" class="btn btn-primary btn-sm">Save</button>
+            <button (click)="onSubmit(f)" *ngIf="action === 'delete'" class="btn btn-primary btn-sm">Delete</button>
+            <button (click)="onSubmit(f)" [disabled]="!f.valid"*ngIf="action === 'create' || action === 'edit'" class="btn btn-primary btn-sm">Save</button>
             <button routerLink="/organizational_units" *ngIf="action !== 'view'" class="btn btn-default btn-sm">Cancelar</button>
             <button routerLink="/organizational_units" *ngIf="action === 'view'" class="btn btn-default btn-sm">Voltar</button>
         </div>
