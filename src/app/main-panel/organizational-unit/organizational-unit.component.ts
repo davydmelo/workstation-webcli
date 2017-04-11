@@ -17,7 +17,7 @@ export class OrganizationalUnitComponent implements OnInit {
 
   public users: User[];
   public selectedUsers: User[] = [];
-  public selected: number[];
+  //public selected: number[];
 
   constructor(private route: ActivatedRoute, private userService: UserService)
   {      
@@ -36,26 +36,28 @@ export class OrganizationalUnitComponent implements OnInit {
 
   onSelectedToTheRight()
   {
-      this.selected = this.form.form.value.leftSelect;
+      const selected: number[] = this.form.form.value.leftSelect;
 
-      if (this.selected.length > 0)
+      for (let i = 0; i < this.users.length; i++)
       {
-          this.selected.forEach(element =>
+          for (let j = 0; j < selected.length; j++)
           {
-              this.selectedUsers.push(this.users[element]);
-          });
-
-          const temp = this.users.slice(0);
-          this.users = [];
-
-          for (let i = 0; i < temp.length; i++)
-          {
-              if (this.selected.indexOf(i) === -1)
-              {
-                  this.users.push(temp[i]);
-              }
+                if (this.users[i].id === selected[j])
+                {
+                    this.selectedUsers.push(this.users[i]);
+                }
           }
       }
+
+      for (let j = 0; j < selected.length; j++)
+      {
+            this.users = this.users.filter((user) => {
+                return user.id !== selected[j];
+            });
+      }
+
+      this.users.sort((user1, user2) => user1.username.localeCompare(user2.username));
+      this.selectedUsers.sort((user1, user2) => user1.username.localeCompare(user2.username));
   }
 
   compareFn(u1: User, u2: User): boolean

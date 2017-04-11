@@ -22,7 +22,7 @@
                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </button>
             <select multiple class="form-control form-control-sm" id="sponsors" [disabled]="isFormDisabled()" name="leftSelect" ngModel #s1>
-                <option *ngFor="let user of users; let i = index;" [ngValue]='i'>{{user.username}}</option>                
+                <option *ngFor="let user of users" [ngValue]='user.id'>{{user.username}}</option>                
             </select>
 
             <pre>{{users | json }}</pre>
