@@ -35,6 +35,12 @@ const routes: Routes = [
   { path: 'vendor/:id/view', component: VendorComponent },
   { path: 'vendor/:id/edit', component: VendorComponent },
   { path: 'vendor/:id/delete', component: VendorComponent },
+
+  { path: 'users', component: UsersComponent },
+  { path: 'user/create', component: UserComponent },
+  { path: 'user/:id/view', component: UserComponent },
+  { path: 'user/:id/edit', component: UserComponent },
+  { path: 'user/:id/delete', component: UserComponent },
 //  { path: 'materials', component: OrganizationalUnitsComponent },
 //  { path: 'materials/:id', component: OrganizationalUnitsComponent },
 //  { path: 'vendors', component: VendorsComponent },

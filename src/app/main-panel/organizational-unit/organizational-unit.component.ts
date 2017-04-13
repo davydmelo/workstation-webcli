@@ -12,12 +12,11 @@ import { User } from 'app/user';
 export class OrganizationalUnitComponent implements OnInit {
 
   @ViewChild('f') form: NgForm;
-  @ViewChild('s1') s1: ElementRef;
+  
   public action: string;
 
   public users: User[];
   public selectedUsers: User[] = [];
-  //public selected: number[];
 
   constructor(private route: ActivatedRoute, private userService: UserService)
   {      
@@ -60,11 +59,6 @@ export class OrganizationalUnitComponent implements OnInit {
       this.selectedUsers.sort((user1, user2) => user1.username.localeCompare(user2.username));
   }
 
-  compareFn(u1: User, u2: User): boolean
-  {
-      return u1 && u2 ? u1.id === u2.id : u1 === u2;
-  }
-
   onSelectedToTheLeft()
   {
       console.log('Left');
@@ -72,12 +66,18 @@ export class OrganizationalUnitComponent implements OnInit {
 
   onSubmit()
   {
-      console.log(this.form.form.value.name);
-      console.log();
+        this.form.reset();
+        this.selectedUsers = [];
+        this.users = this.userService.getAll();
   }
 
   onDelete()
   {
 
+  }
+
+  sponsorInWatchers(): boolean
+  {
+      return false;
   }
 }

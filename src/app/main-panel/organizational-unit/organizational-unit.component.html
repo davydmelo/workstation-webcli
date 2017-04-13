@@ -1,3 +1,20 @@
+<div class="card">
+  <div class="card-header">
+
+      <div class="clearfix">
+
+        <div [ngSwitch]="action">
+            <div *ngSwitchCase="'view'">VISUALIZAR UNIDADE ORGANIZACIONAL</div>
+            <div *ngSwitchCase="'create'">CRIAR UNIDADE ORGANIZACIONAL</div>
+            <div *ngSwitchCase="'edit'">EDITAR UNIDADE ORGANIZACIONAL</div>
+            <div *ngSwitchCase="'delete'">EXCLUIR UNIDADE ORGANIZACIONAL</div>            
+        </div>
+    </div>
+    
+  </div>
+
+  <div class="card-block">
+
 <form #f="ngForm">
     <div class="form-group row" *ngIf="action !== 'create'">
         <label for="id" class="control-label col-sm-2">Código:</label>
@@ -15,17 +32,24 @@
     </div>
 
     <div class="form-group row"> 
-        <label for="sponsors" class="control-label col-sm-2">Responsáveis:</label>
+        <label for="sponsor" class="control-label col-sm-2">Responsável:</label>
+        <div class="col-sm-4">
+            <select class="form-control form-control-sm" id="sponsor" [disabled]="isFormDisabled()" name="sponsor" ngModel #sponsor>
+                <option *ngFor="let user of users" [ngValue]='user.id'>{{user.username}}</option>                
+            </select>            
+        </div>
+    </div>
+
+    <div class="form-group row"> 
+        <label for="watchers" class="control-label col-sm-2">Interessados:</label>
         <div class="col-sm-2">
             <input class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
             <button (click)="onSelectedToTheRight()" class="btn btn-primary form-control btn-sm" [disabled]="isFormDisabled()">
                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </button>
-            <select multiple class="form-control form-control-sm" id="sponsors" [disabled]="isFormDisabled()" name="leftSelect" ngModel #s1>
+            <select multiple class="form-control form-control-sm" id="watchers" [disabled]="isFormDisabled()" name="leftSelect" ngModel #watchers>
                 <option *ngFor="let user of users" [ngValue]='user.id'>{{user.username}}</option>                
-            </select>
-
-            <pre>{{users | json }}</pre>
+            </select>            
         </div>
         <div class="col-sm-2">
             <input class="form-control form-control-sm" [disabled]="isFormDisabled()"/>
@@ -35,8 +59,6 @@
             <select multiple class="form-control form-control-sm" [disabled]="isFormDisabled()" name="rightSelect" ngModel>
                 <option *ngFor="let u of selectedUsers" [ngValue]='u.id'>{{u.username}}</option>
             </select>
-
-            <pre>{{selectedUsers | json }}</pre>
         </div>
     </div>
 
@@ -49,3 +71,6 @@
         </div>
     </div>
 </form>
+
+</div>
+</div>
