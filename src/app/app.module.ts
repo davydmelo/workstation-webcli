@@ -17,9 +17,14 @@ import { OrganizationalUnitService } from './organizational-unit.service';
 import { VendorsComponent } from './main-panel/vendors/vendors.component';
 import { VendorService } from './vendor.service';
 import { VendorComponent } from './main-panel/vendor/vendor.component';
+
 import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users/users.component';
-import { UserService } from "app/user.service";
+import { UserService } from 'app/user.service';
+
+import { AssetComponent } from './main-panel/asset/asset.component';
+import { AssetsComponent } from './main-panel/assets/assets.component';
+import { AssetService } from './asset.service';
 
 
 const routes: Routes = [
@@ -41,6 +46,12 @@ const routes: Routes = [
   { path: 'user/:id/view', component: UserComponent },
   { path: 'user/:id/edit', component: UserComponent },
   { path: 'user/:id/delete', component: UserComponent },
+
+  { path: 'assets', component: AssetsComponent },
+  { path: 'asset/create', component: AssetComponent },
+  { path: 'asset/:id/view', component: AssetComponent },
+  { path: 'asset/:id/edit', component: AssetComponent },
+  { path: 'asset/:id/delete', component: AssetComponent },
 //  { path: 'materials', component: OrganizationalUnitsComponent },
 //  { path: 'materials/:id', component: OrganizationalUnitsComponent },
 //  { path: 'vendors', component: VendorsComponent },
@@ -60,7 +71,9 @@ const routes: Routes = [
     VendorsComponent,
     VendorComponent,
     UserComponent,
-    UsersComponent
+    UsersComponent,
+    AssetComponent,
+    AssetsComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +81,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [OrganizationalUnitService, VendorService, UserService],
+  providers: [OrganizationalUnitService, VendorService, UserService, AssetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-header">
         <div class="clearfix">
-            LISTA DE UNIDADES ORGANIZACIONAIS
-            <button [routerLink]="['/organizational_unit', 'create']" class="btn btn-secondary btn-sm float-right"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Unidade Organizacional</button>
+            LISTA DE ATIVOS
+            <button [routerLink]="['/asset', 'create']" class="btn btn-secondary btn-sm float-right"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Ativo</button>
         </div>
     </div>
     <div class="card-block">
@@ -15,11 +15,23 @@
                         <i class="fa fa-sort-numeric-asc" aria-hidden="true" *ngIf="false"></i>
                         <br/><input class="form-control form-control-sm text-center" (keyup)="onFilterChange(event)" #idFilter/>
                     </td>
-                    <td class="text-center" style="width:80%">
+                    <td class="text-center" style="width:10%">
+                        CÓDIGO
+                        <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
+                        <i class="fa fa-sort-numeric-asc" aria-hidden="true" *ngIf="false"></i>
+                        <br/><input class="form-control form-control-sm text-center" (keyup)="onFilterChange(event)" #codeFilter/>
+                    </td>
+                    <td class="text-center" style="width:50%">
                         NOME
                         <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
                         <i class="fa fa-sort-alpha-asc" aria-hidden="true" *ngIf="false"></i>
                         <br/><input class="form-control form-control-sm text-center" (keyup)="onFilterChange(event)" #nameFilter/>
+                    </td>
+                    <td class="text-center" style="width:30%">
+                        FORNECEDOR
+                        <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+                        <i class="fa fa-sort-alpha-asc" aria-hidden="true" *ngIf="false"></i>
+                        <br/><input class="form-control form-control-sm text-center" (keyup)="onFilterChange(event)" #vendorFilter/>
                     </td>
                     <td class="text-center">
                         AÇÕES<br/>
@@ -27,21 +39,23 @@
                     </td>
                 </tr>
             </thead>
-            <tbody *ngIf="ous.length > 0; else zeroElementMessage">
-                <tr *ngFor="let o of ous">
-                    <td class="text-center">{{o.id}}</td>
-                    <td class="text-center">{{o.name}}</td>
+            <tbody *ngIf="assets.length > 0; else zeroElementMessage">
+                <tr *ngFor="let asset of assets">
+                    <td class="text-center">{{asset.id}}</td>
+                    <td class="text-center">{{asset.code}}</td>
+                    <td class="text-center">{{asset.name}}</td>
+                    <td class="text-center">{{asset.vendor.name}}</td>
                     <td class="text-center">
-                        <button [routerLink]="['/organizational_unit', o.id, 'view']" class="btn btn-primary btn-sm"><i [routerLink]="['/organizational_unit', o.id, 'view']" class="fa fa-search" aria-hidden="true"></i></button>
-                        <button [routerLink]="['/organizational_unit', o.id, 'edit']" class="btn btn-success btn-sm"><i [routerLink]="['/organizational_unit', o.id, 'edit']" class="fa fa-pencil" aria-hidden="true"></i></button>
-                        <button [routerLink]="['/organizational_unit', o.id, 'delete']" class="btn btn-danger btn-sm"><i [routerLink]="['/organizational_unit', o.id, 'delete']" class="fa fa-trash-o" aria-hidden="true"></i></button>
+                        <button [routerLink]="['/asset', asset.id, 'view']" class="btn btn-primary btn-sm"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <button [routerLink]="['/asset', asset.id, 'edit']" class="btn btn-success btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        <button [routerLink]="['/asset', asset.id, 'delete']" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                     </td>
                 </tr>
             </tbody>
             <ng-template #zeroElementMessage>
                 <tbody>
                     <tr>
-                        <td colspan="5">Nenhuma unidade organizacional encontrada.</td>
+                        <td colspan="5">Nenhum ativo encontrado.</td>
                     </tr>
                 </tbody>
             </ng-template>

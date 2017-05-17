@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { VendorService } from '../../vendor.service';
 import { Vendor } from '../../vendor';
 
@@ -10,6 +10,10 @@ import { Vendor } from '../../vendor';
 export class VendorsComponent implements OnInit {
 
   vendors: Vendor[] = [];
+  allVendors: Vendor[] = [];
+
+  @ViewChild('idFilter') idFilter: ElementRef;
+  @ViewChild('nameFilter') nameFilter: ElementRef;
 
   constructor(private vendorService: VendorService)
   {
@@ -18,7 +22,21 @@ export class VendorsComponent implements OnInit {
 
   ngOnInit()
   {
-      this.vendors = this.vendorService.getAll();
+      this.allVendors = this.vendorService.getAll();
+      this.vendors = this.allVendors;
   }
 
+onFilterChange(event: any) {
+      this.vendors = this.allVendors.filter((vendor) => {
+          return String(vendor.id).includes(this.idFilter.nativeElement.value);
+      }).filter((vendor) => {
+          return vendor.name.includes(this.nameFilter.nativeElement.value);
+      });
+  }
+
+  cleanSearchCriteria() {
+      this.vendors = this.allVendors;
+      this.idFilter.nativeElement.value = '';
+      this.nameFilter.nativeElement.value = '';
+  }
 }
